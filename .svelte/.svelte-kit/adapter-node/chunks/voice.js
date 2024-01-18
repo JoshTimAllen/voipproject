@@ -1,6 +1,7 @@
-import { c as create_ssr_component, e as each, b as escape, v as validate_component, m as missing_component } from "./ssr.js";
+import { c as create_ssr_component, e as each, v as validate_component, m as missing_component } from "./ssr.js";
 import "https://esm.sh/peerjs@1.5.2?bundle-deps";
-const css$1 = {
+import "cors";
+const css = {
   code: ".incoming-call-container.svelte-19roec1{position:fixed;right:0;bottom:0;z-index:10000;width:450px;background:rgb(61, 61, 61);height:350px;margin-right:40px;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.button-area.svelte-19roec1{width:100%;display:flex;justify-content:space-evenly;align-items:center}",
   map: null
 };
@@ -16,7 +17,7 @@ const Incomingcall = create_ssr_component(($$result, $$props, $$bindings, slots)
     $$bindings.Answer(Answer);
   if ($$props.Decline === void 0 && $$bindings.Decline && Decline !== void 0)
     $$bindings.Decline(Decline);
-  $$result.css.add(css$1);
+  $$result.css.add(css);
   return `<div class="incoming-call-container svelte-19roec1"><div class="image-container" data-svelte-h="svelte-1kyomsk"><img src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357" class="rounded-circle mr-1 incoming-img" alt="" width="220" height="220"></div> <div class="button-area svelte-19roec1"><button type="button" class="btn btn-success" data-svelte-h="svelte-u7x4sh">Answer</button> <button type="button" class="btn btn-danger" data-svelte-h="svelte-1da1e5r">Decline</button></div> </div>`;
 });
 class CallData {
@@ -25,30 +26,6 @@ class CallData {
   }
   participants = [];
 }
-const css = {
-  code: ".incoming-call-container.svelte-19roec1{position:fixed;right:0;bottom:0;z-index:10000;width:450px;background:rgb(61, 61, 61);height:350px;margin-right:40px;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.button-area.svelte-19roec1{width:100%;display:flex;justify-content:space-evenly;align-items:center}",
-  map: null
-};
-const Callview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { calldata = new CallData() } = $$props;
-  let { callerUserName = "" } = $$props;
-  let { Answer = (callerUserName2 = "") => {
-  } } = $$props;
-  let { Decline = (callerUserName2 = "") => {
-  } } = $$props;
-  if ($$props.calldata === void 0 && $$bindings.calldata && calldata !== void 0)
-    $$bindings.calldata(calldata);
-  if ($$props.callerUserName === void 0 && $$bindings.callerUserName && callerUserName !== void 0)
-    $$bindings.callerUserName(callerUserName);
-  if ($$props.Answer === void 0 && $$bindings.Answer && Answer !== void 0)
-    $$bindings.Answer(Answer);
-  if ($$props.Decline === void 0 && $$bindings.Decline && Decline !== void 0)
-    $$bindings.Decline(Decline);
-  $$result.css.add(css);
-  return `${each(calldata.participants, (particpant) => {
-    return `<div class="incoming-call-container svelte-19roec1"><div class="image-container" data-svelte-h="svelte-1ul5uuc"><img src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357" class="rounded-circle mr-1 incoming-img" alt="" width="220" height="220"></div> <h3>${escape(particpant["username"])}</h3> </div>`;
-  })} <div class="button-area svelte-19roec1"><button type="button" class="btn btn-success" data-svelte-h="svelte-1e2gltt">Answer</button> <button type="button" class="btn btn-danger" data-svelte-h="svelte-t5pddb">Decline</button> </div>`;
-});
 const Voice = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { val = "hjbhjkhkjkjhkjhjklhkljklhjkl" } = $$props;
   let { incomingCalls = ["jkkjl;llllllll"] } = $$props;
@@ -71,10 +48,10 @@ const Voice = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     var calldata2 = { otherUser: userToReject };
     socket.emit("reject-call", calldata2);
   } } = $$props;
-  const LeaveCall = () => {
+  let { LeaveCall = () => {
     var calldata2 = {};
     socket.emit("leave-call", calldata2);
-  };
+  } } = $$props;
   var audioQueue = [];
   var ableToPlayNew = true;
   setInterval(
@@ -144,25 +121,7 @@ const Voice = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         },
         {}
       )}`;
-    })} ${validate_component(Callview || missing_component, "svelte:component").$$render(
-      $$result,
-      { calldata, Answer, Decline: Reject },
-      {
-        calldata: ($$value) => {
-          calldata = $$value;
-          $$settled = false;
-        },
-        Answer: ($$value) => {
-          Answer = $$value;
-          $$settled = false;
-        },
-        Decline: ($$value) => {
-          Reject = $$value;
-          $$settled = false;
-        }
-      },
-      {}
-    )}`;
+    })} ${``}`;
   } while (!$$settled);
   return $$rendered;
 });

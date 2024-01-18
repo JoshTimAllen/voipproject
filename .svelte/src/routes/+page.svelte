@@ -4,6 +4,8 @@
     import Voice from "./../components/voice.svelte";
     import CardType1 from "../components/messaging-components/cardtype1.svelte";
     import "./files/js/sidebars.js";
+    export var data;
+    console.log(data);
     var focusUser_username = "";
 
     var searchResults = [];
@@ -77,7 +79,7 @@
                 <svg class="bi me-2" width="30" height="24"
                     ><use xlink:href="#bootstrap" /></svg
                 >
-                <span class="fs-5 fw-semibold">VP</span>
+                <span class="fs-5 fw-semibold">{"jhj"}</span>
             </a>
             <div class="px-4 d-none d-md-block">
                 <div class="d-flex align-items-center">

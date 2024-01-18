@@ -5,11 +5,13 @@
     import Incomingcall from "./messaging-components/incomingcall.svelte";
     import { onMount } from "svelte";
     import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps";
+    import e from "cors";
     export let val = "hjbhjkhkjkjhkjhjklhkljklhjkl";
     export let incomingCalls = ["jkkjl;llllllll"];
     let incomingCallsTimeOut = {};
     export const event = new CustomEvent("event");
     export let calldata = new CallData();
+    let inCall = false;
     var socket = io("/", {
         // extraHeaders: {
         //     auth: document.cookie,
@@ -37,7 +39,7 @@
         };
         socket.emit("reject-call", calldata);
     };
-    export const LeaveCall = () => {
+    export let LeaveCall = () => {
         var calldata = {};
         socket.emit("leave-call", calldata);
     };
@@ -223,6 +225,12 @@
             });
             socket.on("call-data", function (data) {
                 calldata = data;
+                if (calldata != null) {
+                    inCall = true;
+                    incomingCalls = [];
+                } else {
+                    inCall = false;
+                }
             });
 
             socket.on("connect_error", (err) => {
@@ -265,10 +273,6 @@
         bind:Decline={Reject}
     />
 {/each}
-
-<svelte:component
-    this={Callview}
-    bind:calldata
-    bind:Answer
-    bind:Decline={Reject}
-/>
+{#if inCall}
+    <svelte:component this={Callview} bind:calldata bind:LeaveCall />
+{/if}

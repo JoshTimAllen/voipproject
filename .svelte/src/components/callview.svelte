@@ -2,52 +2,90 @@
     import { CallData } from "../.shared/sharedmodels.js";
 
     export let calldata = new CallData();
+    calldata.participants.push({
+        username: "hgfyhgjgh",
+    });
+    calldata.participants.push({
+        username: "hgfyhgjgh",
+    });
+    calldata.participants.push({
+        username: "hgfyhgjgh",
+    });
+    calldata.participants.push({
+        username: "hgfyhgjgh",
+    });
+    calldata.participants.push({
+        username: "hgfyhgjgh",
+    });
+    calldata.participants.push({
+        username: "hgfyhgjgh",
+    });
+    calldata.participants.push({
+        username: "hgfyhgjgh",
+    });
     export let callerUserName = "";
-    export let Answer = (callerUserName = "") => {};
-    export let Decline = (callerUserName = "") => {};
+    export let LeaveCall = (callerUserName = "") => {};
 </script>
 
-{#each calldata.participants as particpant}
-    <div class="incoming-call-container">
-        <div class="image-container">
-            <img
-                src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357"
-                class="rounded-circle mr-1 incoming-img"
-                alt=""
-                width="220"
-                height="220"
-            />
-        </div>
-        <h3>{particpant["username"]}</h3>
-    </div>
-{/each}
+<div class="call-view">
+    <div class="call-view-container">
+        {#each calldata.participants as particpant}
+            <div class="caller-display">
+                <div class="image-container">
+                    <img
+                        src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357"
+                        class="rounded-circle mr-1 incoming-img"
+                        alt=""
+                        width="220"
+                        height="220"
+                    />
+                </div>
+                <h3>{particpant["username"]}</h3>
+            </div>
+        {/each}
 
-<div class="button-area">
-    <button
-        type="button"
-        class="btn btn-success"
-        on:click={() => {
-            Answer(callerUserName);
-        }}>Answer</button
-    >
-    <button
-        type="button"
-        class="btn btn-danger"
-        on:click={() => {
-            Decline(callerUserName);
-        }}>Decline</button
-    >
+        <div class="button-area">
+            <button
+                type="button"
+                class="btn btn-danger"
+                on:click={() => {
+                    LeaveCall(callerUserName);
+                }}>Leave</button
+            >
+        </div>
+    </div>
 </div>
 
 <style>
-    .incoming-call-container {
+    .call-view {
         position: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 6969696969;
+        margin: auto;
+    }
+    .call-view-container {
+        background: rgb(44, 44, 44);
+        width: 95%;
+        height: 95%;
+        display: inline-flex;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .caller-display {
+        position: relative;
         right: 0;
         bottom: 0;
         z-index: 10000;
-        width: 450px;
+        max-width: 450px;
+        min-width: 350px;
         background: rgb(61, 61, 61);
-        height: 350px;
+        max-height: 350px;
         margin-right: 40px;
         display: flex;
         flex-direction: column;

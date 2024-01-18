@@ -21,6 +21,13 @@ export class CallRoom {
 
         });
         participant.voiceUser.socketUsedForCall.broadcast.emit('user-connected', participant.voiceUser.peerId);
+        this.calldata = new CallData();
+
+        this.participants.forEach(participant => {
+            this.calldata.participants.push({
+                username: participant.username
+            });
+        });
 
         participant.voiceUser.socketUsedForCall.broadcast.emit("call-data", this.calldata);
         participant.voiceUser.socketUsedForCall.emit("call-data", this.calldata);
@@ -29,6 +36,14 @@ export class CallRoom {
         participant.voiceUser.socketUsedForCall.broadcast.emit()
         if (!this.participants.some(x => x.username == participant.username)) { return; }
         this.participants.splice(this.participants.indexOf(this.participants.find(x => x.username == participant.username)), 0);
+
+        this.calldata = new CallData();
+
+        this.participants.forEach(participant => {
+            this.calldata.participants.push({
+                username: participant.username
+            });
+        });
 
         participant.voiceUser.socketUsedForCall.broadcast.emit("call-data", this.calldata);
         participant.voiceUser.socketUsedForCall.emit("call-data", this.calldata);

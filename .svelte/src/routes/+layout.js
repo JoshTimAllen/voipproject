@@ -6,9 +6,11 @@ import { redirect } from '@sveltejs/kit';
 /** @type {import('./$types').PageLoad} */
 export const load = async ({ param, route, url }) => {
     let pathname = await url.pathname;
-    console.log("urlis " + url);
-    console.log(JSON.stringify(route));
-    console.log("urlis " + param);
+    // return {
+    //     data: {
+    //         username: "kkkkkkk"
+    //     }
+    // }
     await fetch('/usercheck', {
         method: "GET",
         headers: {
@@ -17,14 +19,20 @@ export const load = async ({ param, route, url }) => {
     }).then(async function (response) {
         var responseData;
         await response.json().then(value => {
-            console.log(pathname);
-            console.log(value);
             responseData = value;
-            if (responseData["username"] != "") {
+            let username = responseData["username"];
+            if (username) {
                 if (pathname == "/access") {
                     return redirect(302, "/");
                 }
-                return {}
+                else {
+                    return {
+                        data: {
+                            "username": username
+                        }
+                    }
+
+                }
             }
             else {
                 if (pathname != "/access") {
