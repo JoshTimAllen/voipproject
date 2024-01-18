@@ -15,7 +15,7 @@
     var password = null;
 
     async function doPost() {
-        const res = await fetch("http://localhost:3000/register", {
+        const res = await fetch("/register", {
             // mode: "no-cors",
             method: "POST",
             body: JSON.stringify({

@@ -6,7 +6,7 @@ import { redirect } from '@sveltejs/kit';
 /** @type {import('./$types').PageLoad} */
 export const load = async ({ param, route, url }) => {
     let pathname = await url.pathname;
-    await fetch('http://localhost:3000/usercheck', {
+    await fetch('/usercheck', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
