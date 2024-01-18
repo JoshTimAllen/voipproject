@@ -1,0 +1,145 @@
+body {
+    /* margin-top: 20px; */
+}
+
+.chat-online {
+    color: #34ce57
+}
+
+.chat-offline {
+    color: #e4606d
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll
+}
+
+.chat-message-left,
+.chat-message-right {
+    display: flex;
+    flex-shrink: 0
+}
+
+.chat-message-left {
+    margin-right: auto
+}
+
+.chat-message-right {
+    flex-direction: row-reverse;
+    margin-left: auto
+}
+
+.py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.px-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+.flex-grow-0 {
+    flex-grow: 0 !important;
+}
+
+.border-top {
+    border-top: 1px solid #dee2e6 !important;
+}
+
+.content {
+    padding: 0 !important;
+}
+
+.container {
+    width: 100% !important;
+    max-width: 100%;
+    /* border: 2px solid red; */
+}
+
+.left-panel {
+    /* position: fixed; */
+    float: left;
+}
+
+.right-messaging {
+    width: 100% !important;
+    height: 100% !important;
+    /* height: 50% !important; */
+    border: 1px solid red;
+    /* position: fixed; */
+    /* float: right; */
+}
+
+.right-messaging-middle {
+    height: 80%;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.page-content {
+    background: rgb(44, 44, 44);
+    display: flex;
+    justify-content: baseline;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh !important;
+    /* border: 1px solid red; */
+    /* justify-content: space-between; */
+}
+
+.left-content {
+    background: rgb(26, 26, 26) !important;
+    margin: auto;
+    flex: 3;
+}
+
+.right-content {
+    height: 100% !important;
+    background: rgb(26, 26, 26) !important;
+    flex: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid blue;
+    padding: 0 !important;
+    max-height: 100% !important;
+}
+
+.right-content .container {
+    height: 100% !important;
+    background: rgb(26, 26, 26) !important;
+    width: 100%;
+    height: 100%;
+}
+
+.scrollarea {
+    background: rgb(26, 26, 26) !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.msgcard {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    height: 100% !important;
+    border: 1px solid red;
+}
