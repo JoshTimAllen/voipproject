@@ -1,18 +1,29 @@
 <script>
     export const ssr = false;
     import Loginform from "../../components/loginform.svelte";
-    // import { Router, Route, Link } from "yrv";
+    import { Router, Route, Link } from "yrv";
     import Registerform from "../../components/registerform.svelte";
+    import { onMount } from "svelte";
     export let data;
     var registerFormActive = false;
+    // onMount(async () => {
+    if (
+        window.location.hash != "#login" &&
+        window.location.hash != "#register"
+    ) {
+        window.location.hash = "login";
+    }
+    // });
 </script>
 
 <!-- <svelte:component this={Loginform} /> -->
-<!-- <Router>
-    <Route path="/access/login" component={Loginform} />
-    <Route path="/access/register" component={Registerform} />
-</Router> -->
-<button
+<Router>
+    <Route path="/access#login" component={Loginform} />
+    <Route path="/access#register" component={Registerform} />
+    <Route path="/access#:path" component={Loginform} />
+    <Route path="/access:path" component={Loginform} />
+</Router>
+<!-- <button
     on:click={() => {
         registerFormActive = !registerFormActive;
     }}
@@ -22,12 +33,12 @@
     {:else}
         Register
     {/if}
-</button>
+</button> -->
 
-{#if !registerFormActive}
-    <svelte:component this={Loginform} />
+<!-- {#if !registerFormActive}
+    <svelte:component this={Loginform} bind:registerFormActive />
 {:else}
-    <svelte:component this={Registerform} />
-{/if}
+    <svelte:component this={Registerform} bind:registerFormActive />
+{/if} -->
 {JSON.stringify(data)}
 <!-- <svelte:component this={Loginform} /> -->

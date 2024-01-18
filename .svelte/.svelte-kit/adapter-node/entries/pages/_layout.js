@@ -2,6 +2,9 @@ import { r as redirect } from "../../chunks/index.js";
 const ssr = false;
 const load = async ({ param, route, url }) => {
   let pathname = await url.pathname;
+  console.log("urlis " + url);
+  console.log(JSON.stringify(route));
+  console.log("urlis " + param);
   await fetch("/usercheck", {
     method: "GET",
     headers: {
@@ -14,6 +17,9 @@ const load = async ({ param, route, url }) => {
       console.log(value);
       responseData = value;
       if (responseData["username"] != "") {
+        if (pathname == "/access") {
+          return redirect(302, "/");
+        }
         return {};
       } else {
         if (pathname != "/access") {
