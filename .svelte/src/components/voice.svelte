@@ -100,8 +100,8 @@
 
             const socket = io("/");
             peer = new Peer(undefined, {
-                host: "/",
-                port: "3001",
+                // host: "/",
+                // port: "3001",
             });
 
             var audios = {};
