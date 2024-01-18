@@ -30,7 +30,7 @@
   },
   "_voice.js": {
     "css": [
-      "_app/immutable/assets/voice.0pAaGukS.css"
+      "_app/immutable/assets/voice.66ekT5YB.css"
     ],
     "file": "chunks/voice.js",
     "imports": [
@@ -80,7 +80,7 @@
   },
   "src/routes/+page.svelte": {
     "css": [
-      "_app/immutable/assets/_page.juFY_hyz.css"
+      "_app/immutable/assets/_page.v2XORUVm.css"
     ],
     "file": "entries/pages/_page.svelte.js",
     "imports": [

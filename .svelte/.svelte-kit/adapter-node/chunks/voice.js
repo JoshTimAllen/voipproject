@@ -2,7 +2,7 @@ import { c as create_ssr_component, e as each, v as validate_component, m as mis
 import "https://esm.sh/peerjs@1.5.2?bundle-deps";
 import "cors";
 const css = {
-  code: ".incoming-call-container.svelte-19roec1{position:fixed;right:0;bottom:0;z-index:10000;width:450px;background:rgb(61, 61, 61);height:350px;margin-right:40px;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.button-area.svelte-19roec1{width:100%;display:flex;justify-content:space-evenly;align-items:center}",
+  code: ".incoming-call.svelte-1r4yqv6{position:fixed;right:0;bottom:0;z-index:10000;width:450px;background:rgb(61, 61, 61);height:350px;margin-right:40px;display:flex;justify-content:center;align-items:center}.incoming-call-container.svelte-1r4yqv6{width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.button-area.svelte-1r4yqv6{width:100%;display:flex;justify-content:space-evenly;align-items:center}@media only screen and (max-width: 1080px){.incoming-call.svelte-1r4yqv6{right:auto;bottom:auto;width:100%;height:100%}}",
   map: null
 };
 const Incomingcall = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -18,7 +18,7 @@ const Incomingcall = create_ssr_component(($$result, $$props, $$bindings, slots)
   if ($$props.Decline === void 0 && $$bindings.Decline && Decline !== void 0)
     $$bindings.Decline(Decline);
   $$result.css.add(css);
-  return `<div class="incoming-call-container svelte-19roec1"><div class="image-container" data-svelte-h="svelte-1kyomsk"><img src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357" class="rounded-circle mr-1 incoming-img" alt="" width="220" height="220"></div> <div class="button-area svelte-19roec1"><button type="button" class="btn btn-success" data-svelte-h="svelte-u7x4sh">Answer</button> <button type="button" class="btn btn-danger" data-svelte-h="svelte-1da1e5r">Decline</button></div> </div>`;
+  return `<div class="incoming-call svelte-1r4yqv6"><div class="incoming-call-container svelte-1r4yqv6"><div class="image-container" data-svelte-h="svelte-1ul5uuc"><img src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357" class="rounded-circle mr-1 incoming-img" alt="" width="220" height="220"></div> <div class="button-area svelte-1r4yqv6"><button type="button" class="btn btn-success" data-svelte-h="svelte-ep4dj5">Answer</button> <button type="button" class="btn btn-danger" data-svelte-h="svelte-tc44bz">Decline</button></div></div> </div>`;
 });
 class CallData {
   constructor() {

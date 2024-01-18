@@ -4,11 +4,25 @@
     import Voice from "./../components/voice.svelte";
     import CardType1 from "../components/messaging-components/cardtype1.svelte";
     import "./files/js/sidebars.js";
+    import e from "cors";
     export var data;
     console.log(data);
     var focusUser_username = "";
 
     var searchResults = [];
+
+    var rightDisplayTag = " main-no-display";
+    var leftDisplayTag = "";
+
+    function shiftDisplay(displayLeft = true) {
+        if (displayLeft) {
+            rightDisplayTag = " main-no-display";
+            leftDisplayTag = "";
+        } else {
+            rightDisplayTag = "";
+            leftDisplayTag = " main-no-display";
+        }
+    }
 
     var SearchQuery = "";
     async function SearchUser() {
@@ -70,7 +84,7 @@
 />
 
 <div class="page-content h-100">
-    <main class="left-content side-main flex w-100" style="">
+    <main class="left-content side-main flex w-100 {leftDisplayTag}" style="">
         <div class="d-flex flex-column align-items-stretch flex-shrink-0 w-100">
             <a
                 href="/"
@@ -81,7 +95,7 @@
                 >
                 <span class="fs-5 fw-semibold">{"jhj"}</span>
             </a>
-            <div class="px-4 d-none d-md-block">
+            <div class="px-4 d-md-block">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <input
@@ -117,8 +131,10 @@
                 {#each searchResults as searchResult}
                     <a
                         href=""
-                        on:click={() =>
-                            (focusUser_username = searchResult.username)}
+                        on:click={() => {
+                            focusUser_username = searchResult.username;
+                            shiftDisplay(false);
+                        }}
                     >
                         <svelte:component
                             this={CardType1}
@@ -128,8 +144,25 @@
                 {/each}
             </div>
         </div>
+
+        <a
+            class="right-arrow"
+            style="display: none;"
+            href=" "
+            on:click={() => {
+                shiftDisplay(false);
+            }}><i> {">"} </i></a
+        >
     </main>
-    <main class="right-content">
+    <main class="right-content {rightDisplayTag}">
+        <a
+            class="left-arrow"
+            style="display: none;"
+            href=" "
+            on:click={() => {
+                shiftDisplay(true);
+            }}><i> {"<"} </i></a
+        >
         <div class="b-example-divider"></div>
         <div class="w-100" style="height: 100%;">
             <div class="msgcard vh-100 h-100">
@@ -151,9 +184,11 @@
                                 />
                             </div>
                             <div class="flex-grow-1 pl-3">
-                                <strong>{focusUser_username}</strong>
+                                <strong style="color: white;"
+                                    >{focusUser_username}</strong
+                                >
                                 <div class="text-muted small">
-                                    <em>Typing...</em>
+                                    <em style="color: white;">Typing...</em>
                                 </div>
                             </div>
                             <div>
@@ -224,56 +259,7 @@
 
                     <div class="right-messaging-middle">
                         <div class="chat-messages h-100">
-                            <div class="chat-message-right mb-4">
-                                <div>
-                                    <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                        class="rounded-circle mr-1"
-                                        alt="Chris Wood"
-                                        width="40"
-                                        height="40"
-                                    />
-                                    <div
-                                        class="text-muted small text-nowrap mt-2"
-                                    >
-                                        2:35 am
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3"
-                                >
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Cum ea graeci tractatos.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-left pb-4">
-                                <div>
-                                    <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                        class="rounded-circle mr-1"
-                                        alt="Sharon Lessman"
-                                        width="40"
-                                        height="40"
-                                    />
-                                    <div
-                                        class="text-muted small text-nowrap mt-2"
-                                    >
-                                        2:36 am
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3"
-                                >
-                                    <div class="font-weight-bold mb-1">
-                                        Sharon Lessman
-                                    </div>
-                                    Sed pulvinar, massa vitae interdum pulvinar,
-                                    risus lectus porttitor magna, vitae commodo lectus
-                                    mauris et velit. Proin ultricies placerat imperdiet.
-                                    Morbi varius quam ac venenatis tempus.
-                                </div>
-                            </div>
+                            <!-- MESSAGES HERE -->
                         </div>
                     </div>
 

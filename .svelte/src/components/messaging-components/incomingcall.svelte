@@ -4,36 +4,38 @@
     export let Decline = (callerUserName = "") => {};
 </script>
 
-<div class="incoming-call-container">
-    <div class="image-container">
-        <img
-            src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357"
-            class="rounded-circle mr-1 incoming-img"
-            alt=""
-            width="220"
-            height="220"
-        />
-    </div>
-    <div class="button-area">
-        <button
-            type="button"
-            class="btn btn-success"
-            on:click={() => {
-                Answer(callerUserName);
-            }}>Answer</button
-        >
-        <button
-            type="button"
-            class="btn btn-danger"
-            on:click={() => {
-                Decline(callerUserName);
-            }}>Decline</button
-        >
+<div class="incoming-call">
+    <div class="incoming-call-container">
+        <div class="image-container">
+            <img
+                src="https://static.wikia.nocookie.net/worldtrigger/images/c/c4/Ko_88.png/revision/latest?cb=20211024225357"
+                class="rounded-circle mr-1 incoming-img"
+                alt=""
+                width="220"
+                height="220"
+            />
+        </div>
+        <div class="button-area">
+            <button
+                type="button"
+                class="btn btn-success"
+                on:click={() => {
+                    Answer(callerUserName);
+                }}>Answer</button
+            >
+            <button
+                type="button"
+                class="btn btn-danger"
+                on:click={() => {
+                    Decline(callerUserName);
+                }}>Decline</button
+            >
+        </div>
     </div>
 </div>
 
 <style>
-    .incoming-call-container {
+    .incoming-call {
         position: fixed;
         right: 0;
         bottom: 0;
@@ -42,6 +44,13 @@
         background: rgb(61, 61, 61);
         height: 350px;
         margin-right: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .incoming-call-container {
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -52,5 +61,14 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+    }
+
+    @media only screen and (max-width: 1080px) {
+        .incoming-call {
+            right: auto;
+            bottom: auto;
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>
