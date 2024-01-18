@@ -72,7 +72,7 @@ export function Run(http, app) {
             voiceUser.socketUsedForCall = socket;
             voiceUser.peerId = data.peerId;
 
-            peerSockets[data.peerId].socketId = socket.id;
+            // peerSockets[data.peerId].socketId = socket.id;
 
             calUser(username, data.userToCall);
         });
@@ -90,14 +90,14 @@ export function Run(http, app) {
                         voiceUser.socketUsedForCall = socket;
                         let participant = new CallParticipant(username, voiceUser);
                         voiceUser.peerId = data.peerId;
-                        peerSockets[data.peerId].socketId = socket.id;
+                        // peerSockets[data.peerId].socketId = socket.id;
                         voiceUser.callRoom.AddParticipant(participant);
                     } else {
                         voiceUser.callRoom = startCallRoom(users[data.otherUser]);
                         voiceUser.socketUsedForCall = socket;
                         let participant = new CallParticipant(username, voiceUser);
                         voiceUser.peerId = data.peerId;
-                        peerSockets[data.peerId].socketId = socket.id;
+                        // peerSockets[data.peerId].socketId = socket.id;
                         voiceUser.callRoom.AddParticipant(participant);
                     }
                 }
