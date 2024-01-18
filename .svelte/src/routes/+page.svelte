@@ -10,7 +10,7 @@
 
     var SearchQuery = "";
     async function SearchUser() {
-        fetch("http://localhost:3000/usersearch/" + SearchQuery, {
+        fetch("/usersearch/" + SearchQuery, {
             // mode: "no-cors",
             method: "GET",
             headers: {

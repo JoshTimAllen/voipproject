@@ -115,10 +115,10 @@
                     audio: true,
                 })
                 .then((stream) => {
-                    myaudio.srcObject = stream;
-                    myaudio.addEventListener("loadedmetadata", () => {
-                        myaudio.play();
-                    });
+                    // myaudio.srcObject = stream;
+                    // myaudio.addEventListener("loadedmetadata", () => {
+                    //     myaudio.play();
+                    // });
                     // addVideoStream(myVideo, stream);
 
                     peer.on("call", (call) => {
