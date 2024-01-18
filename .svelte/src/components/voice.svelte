@@ -119,6 +119,7 @@
                     // myaudio.addEventListener("loadedmetadata", () => {
                     //     myaudio.play();
                     // });
+
                     // addVideoStream(myVideo, stream);
 
                     peer.on("call", (call) => {
