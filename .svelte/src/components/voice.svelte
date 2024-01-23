@@ -45,6 +45,7 @@
     export let LeaveCall = () => {
         var calldata = {};
         socket.emit("leave-call", calldata);
+        peer.destroy();
     };
 
     var audioQueue = [];
@@ -59,62 +60,21 @@
         // peer.on("open", (id) => {
         //     console.log("peer - " + id);
         // });
-        mainFunction(500);
-        function mainFunction(time) {
-            // navigator.mediaDevices
-            //     .getUserMedia({ audio: true })
-            //     .then((stream) => {
-            //         var madiaRecorder = new MediaRecorder(stream);
-            //         madiaRecorder.start();
 
-            //         var audioChunks = [];
-
-            //         madiaRecorder.addEventListener(
-            //             "dataavailable",
-            //             function (event) {
-            //                 audioChunks.push(event.data);
-            //             },
-            //         );
-
-            //         madiaRecorder.addEventListener("stop", function () {
-            //             var audioBlob = new Blob(audioChunks);
-
-            //             audioChunks = [];
-
-            //             var fileReader = new FileReader();
-            //             fileReader.readAsDataURL(audioBlob);
-            //             fileReader.onloadend = function () {
-            //                 console.log("dsisid");
-            //                 // if (!userStatus.microphone || !userStatus.online)
-            //                 //     return;
-
-            //                 var base64String = fileReader.result;
-            //                 socket.emit("voice", base64String);
-            //             };
-            //             madiaRecorder.start();
-
-            //             setTimeout(function () {
-            //                 madiaRecorder.stop();
-            //             }, time);
-            //         });
-
-            //         setTimeout(function () {
-            //             madiaRecorder.stop();
-            //         }, time);
-            //     });
-
-            const socket = io("/");
+        const socket = io("/");
+        mainFunction();
+        function mainFunction() {
             peer = new Peer(undefined, {
                 // host: "/",
                 // port: "3001",
             });
-
+            peer.on("close", function () {
+                mainFunction();
+            });
             var audios = {};
 
-            // const myVideo = document.createElement("video");
-            // myVideo.muted = true;
             const peers = {};
-            const myaudio = new Audio();
+            // const myaudio = new Audio();
             navigator.mediaDevices
                 .getUserMedia({
                     audio: true,
@@ -145,21 +105,6 @@
                 .catch((reason) => {
                     console.log(reason);
                 });
-
-            // navigator.mediaDevices.getUserMedia(
-            //     { audio: true },
-            //     (stream) => {
-            //         myaudio.srcObject = stream;
-            //         myaudio.play();
-            //         const call = peer.call("another-peers-id", stream);
-            //         call.on("stream", (remoteStream) => {
-            //             // Show stream in some <video> element.
-            //         });
-            //     },
-            //     (err) => {
-            //         console.error("Failed to get local stream", err);
-            //     },
-            // );
 
             socket.on("user-disconnected", (userId) => {
                 if (peers[userId]) peers[userId].close();

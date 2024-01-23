@@ -32,11 +32,13 @@ export class CallRoom {
         participant.voiceUser.socketUsedForCall.broadcast.emit("call-data", this.calldata);
         participant.voiceUser.socketUsedForCall.emit("call-data", this.calldata);
     }
-    RemoveParticipant(participant = new CallParticipant) {
+    RemoveParticipant(username = "") {
+        let participant = new CallParticipant();
+        participant = this.participants.find(x => x.username == username);
         participant.voiceUser.socketUsedForCall.broadcast.emit()
         if (!this.participants.some(x => x.username == participant.username)) { return; }
         this.participants.splice(this.participants.indexOf(this.participants.find(x => x.username == participant.username)), 0);
-
+        console.log("new part" + this.participants);
         this.calldata = new CallData();
 
         this.participants.forEach(participant => {
@@ -47,6 +49,7 @@ export class CallRoom {
 
         participant.voiceUser.socketUsedForCall.broadcast.emit("call-data", this.calldata);
         participant.voiceUser.socketUsedForCall.emit("call-data", this.calldata);
+        participant.voiceUser.socketUsedForCall.leave(this.roomId);
     }
     SendVoice(fromParticipantUsername = "", data) {
         var newData = data.split(";");

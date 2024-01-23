@@ -1,4 +1,6 @@
 <script>
+    import { goto } from "$app/navigation";
+    import { redirect } from "@sveltejs/kit";
     import {
         useForm,
         validators,
@@ -28,8 +30,9 @@
             headers: {
                 "Content-Type": "application/json",
             },
+        }).then((response) => {
+            goto("/");
         });
-
         const json = await res.json();
         var result = JSON.stringify(json);
         console.log(result);

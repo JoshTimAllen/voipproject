@@ -1,4 +1,6 @@
 <script>
+    import { goto } from "$app/navigation";
+    import { redirect } from "@sveltejs/kit";
     import {
         useForm,
         validators,
@@ -17,7 +19,7 @@
     var password = null;
 
     async function doPost() {
-        const res = await fetch("/login", {
+        fetch("/login", {
             // mode: "no-cors",
             method: "POST",
             body: JSON.stringify({
@@ -27,11 +29,9 @@
             headers: {
                 "Content-Type": "application/json",
             },
+        }).then((response) => {
+            goto("/");
         });
-
-        const json = await res.json();
-        var result = JSON.stringify(json);
-        console.log(result);
     }
 </script>
 

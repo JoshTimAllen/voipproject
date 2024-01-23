@@ -51,6 +51,7 @@ const Voice = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { LeaveCall = () => {
     var calldata2 = {};
     socket.emit("leave-call", calldata2);
+    peer.destroy();
   } } = $$props;
   var audioQueue = [];
   var ableToPlayNew = true;

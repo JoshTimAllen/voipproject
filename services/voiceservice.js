@@ -106,6 +106,12 @@ export function Run(http, app) {
         socket.on("reject-call", function (data) {
 
         });
+        socket.on("leave-call", function (data) {
+            if (voiceUser.callRoom != null) {
+                voiceUser.callRoom.RemoveParticipant(username);
+                voiceUser.callRoom = null;
+            }
+        });
         socket.on("join-room", function (data) {
             console.log(data);
         });
@@ -167,7 +173,18 @@ export function Run(http, app) {
         }
     }
     function RemoveSocketConnection(socketId) {
-        var username = "";
+        let username = "";
+        let voiceUser = new VoiceUser(username);
+
+
+        if (users.hasOwnProperty(username)) {
+            voiceUser = users[username];
+        }
+
+        if (voiceUser.callRoom != null) {
+            voiceUser.callRoom.RemoveParticipant();
+        }
+
         if (socketConnections.hasOwnProperty(socketId)) {
             username = socketConnections[socketId];
             delete socketConnections[socketId];
@@ -193,8 +210,8 @@ export function Run(http, app) {
                 }
             }
         }
-        console.log(usersSocketsConnectedToService);
-        console.log(socketConnections);
-        console.log(users);
+        // console.log(usersSocketsConnectedToService);
+        // console.log(socketConnections);
+        // console.log(users);
     }
 }

@@ -1,5 +1,6 @@
-import { c as create_ssr_component, g as getContext, d as subscribe, a as add_attribute, b as escape, f as setContext, v as validate_component, o as onDestroy, m as missing_component } from "../../../chunks/ssr.js";
-import { w as writable } from "../../../chunks/index2.js";
+import { c as create_ssr_component, g as getContext, s as subscribe, a as add_attribute, b as escape, f as setContext, v as validate_component, o as onDestroy, m as missing_component } from "../../../chunks/ssr.js";
+import "../../../chunks/client.js";
+import { w as writable } from "../../../chunks/index.js";
 const Hint = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let touched;
   let errors2;
@@ -1342,13 +1343,10 @@ const Registerform = create_ssr_component(($$result, $$props, $$bindings, slots)
   })}</div> <div class="row align-items-center remember svelte-1il5301" data-svelte-h="svelte-md7rpa"><input type="checkbox" class="svelte-1il5301">Remember Me</div> <div class="form-group"><input type="submit" value="Login" class="btn float-right login_btn svelte-1il5301" ${!$form.valid ? "disabled" : ""}></div></form></div> <div class="card-footer" data-svelte-h="svelte-t6vn70"><div class="d-flex justify-content-center links svelte-1il5301">Already have an account?<a href="#login" class="svelte-1il5301">Login</a></div> </div></div></div> </div>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  const ssr = false;
   let { data } = $$props;
   if (window.location.hash != "#login" && window.location.hash != "#register") {
     window.location.hash = "login";
   }
-  if ($$props.ssr === void 0 && $$bindings.ssr && ssr !== void 0)
-    $$bindings.ssr(ssr);
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
   return ` ${validate_component(Router, "Router").$$render($$result, {}, {}, {

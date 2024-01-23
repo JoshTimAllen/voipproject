@@ -128,13 +128,13 @@ export {
   add_attribute as a,
   escape as b,
   create_ssr_component as c,
-  subscribe as d,
+  safe_not_equal as d,
   each as e,
   setContext as f,
   getContext as g,
   missing_component as m,
   noop as n,
   onDestroy as o,
-  safe_not_equal as s,
+  subscribe as s,
   validate_component as v
 };

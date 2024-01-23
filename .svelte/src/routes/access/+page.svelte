@@ -1,9 +1,10 @@
 <script>
-    export const ssr = false;
     import Loginform from "../../components/loginform.svelte";
     import { Router, Route, Link } from "yrv";
     import Registerform from "../../components/registerform.svelte";
     import { onMount } from "svelte";
+    import { redirect } from "@sveltejs/kit";
+    import { goto } from "$app/navigation";
     export let data;
     var registerFormActive = false;
     // onMount(async () => {
